@@ -11,6 +11,16 @@ const logger = (req, res, next) => {
 };
 
 app.use(logger);
+
+// 8.Chain Middleware to Create a Time Server
+app.get('/now', (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+  }, (req, res) => {
+  res.send({time: req.time})
+  }
+);
+
 // 1.Meet the Node Console
 app.get('/', (req, res) => {
   res.send(console.log('Hello World'));
