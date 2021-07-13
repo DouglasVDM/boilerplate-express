@@ -1,6 +1,8 @@
 var express = require('express');
-var app = express();
+const bodyParser = require('body-parser');
+
 require('dotenv').config()
+var app = express();
 
 // 7.Implement a Root-Level Request Logger Middleware
 const logger = (req, res, next) => {
@@ -12,6 +14,7 @@ const logger = (req, res, next) => {
 };
 
 app.use(logger);
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // 10.Get Query Parameter Input from the Client
 app.get('/name', (req, res) => {
@@ -41,15 +44,7 @@ app.get('/now', (req, res, next) => {
   }
 );
 
-// 1.Meet the Node Console
-app.get('/', (req, res) => {
-  res.send(console.log('Hello World'));
-});
 
-// 2.Start a Working Express Server
-app.get('/', (req, res) => {
-  res.send(console.log('Hello World'));
-});
 
 // 3.Serve an HTML File
 const absolutePath = __dirname + '/views/index.html';
@@ -79,6 +74,16 @@ app.get('/json', (req, res) => {
 // 5.Serve JSON on a Specific Route
 app.get('/json', (req, res) => {
   res.json({ "message": "Hello json" });
+});
+
+// 2.Start a Working Express Server
+app.get('/', (req, res) => {
+  res.send(console.log('Hello World'));
+});
+
+// 1.Meet the Node Console
+app.get('/', (req, res) => {
+  res.send(console.log('Hello World'));
 });
 
 module.exports = app;
