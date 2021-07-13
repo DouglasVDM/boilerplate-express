@@ -24,6 +24,11 @@ app.get('/public/style.css', (req, res) => {
   res.sendFile(absolutePath3);
 });
 
+// 5.Serve JSON on a Specific Route
+app.get('/json', (req, res) => {
+  res.json({ "message": "Hello json" });
+});
+
 module.exports = app;
 
 
