@@ -6,6 +6,11 @@ app.get('/', (req,res) => {
   res.send(console.log('Hello World'));
 })
 
+// 2.Start a Working Express Server
+app.get('/', (req,res) => {
+  res.send(console.log('Hello World'));
+})
+
 module.exports = app;
 
 
