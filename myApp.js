@@ -17,6 +17,13 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath);
 });
 
+// 4.Serve Static Assets
+const absolutePath3 = __dirname + '/public/style.css';
+app.use('absolutePath3', express.static('/public'));
+app.get('/public/style.css', (req, res) => {
+  res.sendFile(absolutePath3);
+});
+
 module.exports = app;
 
 
