@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+require('dotenv').config()
 
 // 7.Implement a Root-Level Request Logger Middleware
 const logger = (req, res, next) => {
@@ -63,21 +64,21 @@ app.get('/public/style.css', (req, res) => {
   res.sendFile(absolutePath3);
 });
 
-// 5.Serve JSON on a Specific Route
-app.get('/json', (req, res) => {
-  res.json({ "message": "Hello json" });
-});
-
 // 6.Use the .env file
 app.get('/json', (req, res) => {
   let data = { 'message': 'Hello json' };
-
+  
   if (process.env.MESSAGE_STYLE === 'uppercase') {
     data.message = data.message.toUpperCase();
     res.json(data);
   } else {
     res.json(data);
   }
+});
+
+// 5.Serve JSON on a Specific Route
+app.get('/json', (req, res) => {
+  res.json({ "message": "Hello json" });
 });
 
 module.exports = app;
