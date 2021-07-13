@@ -12,6 +12,19 @@ const logger = (req, res, next) => {
 
 app.use(logger);
 
+// 10.Get Query Parameter Input from the Client
+app.get('/name', (req, res) => {
+  // const firstname = req.query.first;
+  // const lastname = req.query.last;
+  const { first: firstname, last: lastname } = req.query;
+
+  res.send(
+    {
+      name: `${firstname} ${lastname}`
+    }
+  )
+});
+
 // 9.Get Route Parameter Input from the Client
 app.get('/:word/echo', (req, res) => {
   const { word } = req.params
