@@ -14,6 +14,19 @@ const logger = (req, res, next) => {
 };
 
 app.use(logger);
+
+// 12.Get Data from POST request
+app.route('/name')
+  .get((req, res) => {
+    const { first: firstname, last: lastname } = req.query;
+    res.send({ name: `${firstname} ${lastname}` })
+  })
+  .post((req, res) => {
+    const { first: firstname, last: lastname } = req.body;
+    res.send({ name: `${firstname} ${lastname}` });
+  });
+
+// 11.Use body - parser to Parse POST RequestsPassed
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 10.Get Query Parameter Input from the Client
@@ -22,11 +35,7 @@ app.get('/name', (req, res) => {
   // const lastname = req.query.last;
   const { first: firstname, last: lastname } = req.query;
 
-  res.send(
-    {
-      name: `${firstname} ${lastname}`
-    }
-  )
+  res.send({ name: `${firstname} ${lastname}` })
 });
 
 // 9.Get Route Parameter Input from the Client
