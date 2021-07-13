@@ -12,6 +12,12 @@ const logger = (req, res, next) => {
 
 app.use(logger);
 
+// 9.Get Route Parameter Input from the Client
+app.get('/:word/echo', (req, res) => {
+  const { word } = req.params
+  res.send({ echo: word })
+});
+
 // 8.Chain Middleware to Create a Time Server
 app.get('/now', (req, res, next) => {
   req.time = new Date().toString();
