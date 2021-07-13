@@ -29,6 +29,18 @@ app.get('/json', (req, res) => {
   res.json({ "message": "Hello json" });
 });
 
+// 6.Use the .env file
+app.get('/json', (req, res) => {
+  let data = { 'message': 'Hello json' };
+
+  if (process.env.MESSAGE_STYLE === 'uppercase') {
+    data.message = data.message.toUpperCase();
+    res.json(data);
+  } else {
+    res.json(data);
+  }
+});
+
 module.exports = app;
 
 
